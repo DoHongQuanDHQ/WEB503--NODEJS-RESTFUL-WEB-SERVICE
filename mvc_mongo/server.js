@@ -4,10 +4,11 @@ const multer = require("multer"); //upload file
 
 const mongoose = require("mongoose"); //ket noi voi mongodb
 const ProductController = require("./controllers/ProductController"); //require controller
+const AuthController = require("./controllers/AuthController");
 const app = express();
 const port = 3000;
 
-//khai báo thông tin để upload file 
+//khai báo thông tin để upload file
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/uploads");
@@ -40,6 +41,8 @@ mongoose
     app.post("/product", ProductController.apiCreateProduct);
     app.put("/product/:id", ProductController.apiUpdateProduct);
     app.delete("/product/:id", ProductController.apiDeleteProduct);
+
+    app.post("/register", AuthController.register);
     app.listen(port, () => {
       //chạy sv với port 3000
       console.log(`running in port ${port}`);

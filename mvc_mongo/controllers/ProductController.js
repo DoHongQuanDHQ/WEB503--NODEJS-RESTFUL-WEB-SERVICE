@@ -89,6 +89,7 @@ exports.apiGetList = async (req, res) => {
     res.status(400).json({ message: "Something went wrong" });
   }
 };
+
 exports.appGetProduct = async (req, res) => {
   try {
     var product = await Product.findById(req.params.id);
